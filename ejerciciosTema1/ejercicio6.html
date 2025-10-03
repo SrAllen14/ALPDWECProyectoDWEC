@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let x;
+        let jugar = true;
+        let num;
+        let cont;
+        let terminado;
+        let completado;
+
+        while (jugar){
+            x = parseInt(Math.random()*100+1)
+            console.log(x);
+            num = prompt("Introduzca un numero entre el 1 y el 100");
+            completado = false;
+            terminado = false;
+            cont = 1;
+            while (num != null && !terminado) {
+                if(!isNaN(Number(num))){
+                    if(num == x){
+                        completado = true;
+                        terminado = true;
+                    } else{
+                        if(num < x){
+                            console.log("El número es mayor al introducido.");
+                        } else{
+                            console.log("El número es menor al introducido");
+                        }
+                        cont++;
+                        if(cont > 5){
+                            terminado = true;
+                            cont--;
+                        } else{
+                            num = prompt("Introduzca un numero entre el 1 y el 100");
+                        }
+                    }
+                } else{
+                    alert("Simbolo incorrecto");
+                    num = prompt("Introduzca un numero entre el 1 y el 100");
+                }
+            }
+            if(terminado){
+                document.write("<p>Juego terminado: SI</p>");
+            } else{
+                document.write("<p>Juego terminado: NO</p>");
+            }
+            document.write(`<p>Número de intentos: +${cont}</p>`);
+            if(completado){
+                document.write("<p>Número acertado: SI</p>");
+            } else{
+                document.write("<p>Número acertado: NO</p>");
+            }
+            document.write("<br>")
+            jugar = confirm("¿Quiere seguir jugando?");
+        }
+        
+    </script>
+</body>
+</html>

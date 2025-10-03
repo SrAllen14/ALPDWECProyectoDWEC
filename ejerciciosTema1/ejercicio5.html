@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = prompt("Introduzca un numero");
+        var acum = 0;
+
+       while (x != null){
+            if(isNaN(parseInt(x))){
+                console.log(x);
+                document.write(`<p>${x}</p>`)
+            } else{
+                x = Number(x);
+                acum+=x;
+            }
+            x = prompt("Introduzca un número");
+        }
+        console.log("La suma total de números es: "+acum);
+        document.write(`<p>La suma total de números es: ${acum}</p>`);
+    </script>
+</body>
+</html>

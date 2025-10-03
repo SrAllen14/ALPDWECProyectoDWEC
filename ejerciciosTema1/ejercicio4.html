@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = Number(prompt("Introduzca un numero inferior"));
+        let num2 = Number(prompt("Introduzca un numero superior"));
+        let pares = 0;
+        let impares = 0;
+        if(isNaN(num1) || isNaN(num2)){
+            console.log("Has introducido un valor incorrecto")
+        } else{
+            if(num1>num2){
+                console.log("El valor del número 2 es inferior al del número 1");
+            } else{
+                for(let i = num1+1; i < num2; i++){
+                    if(i%2==0){
+                        pares+=i;
+                    } else{
+                        impares+=i;
+                    }
+                }
+                console.log("La suma total de pares es: "+pares);
+                console.log("La suma total de impares es: "+impares);
+                document.write(`<p>La suma total de pares es: ${pares}</p>`);
+                document.write(`<p>La suma total de impares es: ${impares}</p>`);
+            }
+        }
+    </script>
+</body>
+</html>

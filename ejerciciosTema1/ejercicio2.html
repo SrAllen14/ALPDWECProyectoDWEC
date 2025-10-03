@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num = Number(prompt("Introduzca un número"));
+        let maximo = Math.max();
+        let minimo = Math.min();
+        let acum = 0;
+        let cont = 0
+        while (num != 0) {
+            if(!isNaN(num)){
+                if(num < minimo){
+                    minimo = num;
+                }
+                if(num > maximo){
+                    maximo = num;
+                }
+                acum+=num;
+            } else{
+                console.log("Valor no numerico")
+            }
+            cont++;
+            num = Number(prompt("Introduzca un número"));
+        } 
+        console.log("Máximo: " + maximo);
+        console.log("Mínimo: " + minimo);
+        console.log("Suma total: " + acum/cont);
+        document.write(`Máximo: ${maximo}, Mínimo: ${minimo}, Media: ${acum/cont}`)
+    </script>
+</body>
+</html>
