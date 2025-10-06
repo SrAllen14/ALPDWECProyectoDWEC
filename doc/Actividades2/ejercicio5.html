@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Álvaro Allén Perlines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            /*
+             * 5. Crea una función llamada invertirMapa(). La función devolverá un nuevo mapa donde 
+             * las claves serán los valores del mapa original y los valores del nuevo mapa serán 
+             * arrays que contendrán las claves donde ese valor se repetía.
+             */
+            
+            let mapaOriginal = new Map([
+                                        ["1111BCD", "Seat"],
+                                        ["2222DEF", "Audi"],
+                                        ["3333FGH", "Mercedes"],
+                                        ["4444HIJ", "Seat"],
+                                        ["5555JKL", "Mercedes"],
+                                        ["6666LMN", "Seat"]
+                                      ]);
+            
+            console.log(invertirMapas(mapaOriginal));
+            
+            function invertirMapas(mapaOriginal){
+                let mapaInvertido = new Map();
+                let conjunto = new Set();
+                let key;
+                
+                for (elements of mapaOriginal){
+                    conjunto.add(elements.valueOf()[1]);
+                }
+                
+                for (let i = 0; i < conjunto.length; i++){
+                    for (elements of mapaOriginal){
+                        mapaInvertido.set(conjunto[i], elements.valueOf());
+                    }
+                }
+                
+                return mapaInvertido;
+            }
+        </script>
+    </body>
+</html>

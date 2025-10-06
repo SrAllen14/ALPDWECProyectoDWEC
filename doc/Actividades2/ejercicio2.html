@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Álvaro Allén Perlines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            /*
+             * 2. Crea una función que muestre números de la serie de Fibonacci. La función recibirá
+             * como parámetros el número de elementos de la serie que queremos que muestre. Este dato
+             * se lo solicitaremos al usuario. Debes crear dos funciones para resolver este problema, 
+             * una recursiva y otra iterativa.
+             */  
+            let n;
+            let vector = [];
+            n = Number(prompt("Escriba la cantidad de números que quiere."));
+            
+            console.log("Serie de Fibonacci-Recursiva");
+            for(let a = 0; a < n; a++){
+                vector.push(serieFibonacciRecursiva(a));
+            }
+            console.log(vector);
+            
+            console.log("Serie de Fibonacci-Iterativa");
+            console.log(serieFibonacciIterativa(n));
+            
+
+            function serieFibonacciRecursiva(n){
+                if (n <= 1){
+                    return n;
+                } else{
+                    return serieFibonacciRecursiva(n-1) + serieFibonacciRecursiva(n-2);
+                }
+            }
+            
+            function serieFibonacciIterativa(n){
+                let serie = [0, 1];
+                for (let i = 2; i < n; i++){
+                    serie.push(serie[i-1]+serie[i-2]);
+                }
+                return serie.slice(0, n);
+            }
+            
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Álvaro Allén Perlines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            /*
+             * 4. Crear una función para comprobar hasta que punto la función Math.random() es realmente 
+             * aleatoria. La función recibirá un parámetro que por defecto será 10000. Ese, será el número 
+             * de veces que generaremos números aleatorios del 1 al 10. Aunque el ejercicio se puede resolver
+             * con arrays, utiliza un mapa dnode las claves serán los números del 1 al 10 y los valores, 
+             * el número de veces que aparece.
+             */
+            
+            let n = Number(prompt("Introduzca el número de veces que quieres repetir esto: "));
+            let acum;
+            
+            console.log(mapaPalabras(n));
+            
+            function mapaPalabras(n = 10000 ){
+                let mapa = new Map();
+                let vector = new Array();
+                for (let i = 0; i < n; i++){
+                    vector.push(Math.floor(Math.random(0, 9)*10+1));
+                }
+                console.log(vector);
+                for (let j = 1; j <= 10; j++){
+                    acum = 0;
+                    for (let i = 0; i <vector.length; i++){
+                        if(j===vector[i]){
+                            acum++;
+                        }
+                    }      
+                    mapa.set(j, acum);
+                }
+                return mapa;
+            }
+        </script>
+    </body>
+</html>
