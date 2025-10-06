@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Álvaro Allén Perlines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            /*
+             * 1. Crea una aplicación que pida palabras al usuario hasta que 
+             * pulse el botón cancelar. Después aparecerá un menú de opciones.
+             *      a) Ver primera palabra insertada.
+             *      b) Ver última palabra insertada.
+             *      c) Ver todas las palabras.
+             *      d) Ver la palabra más larga.
+             *      e) Ver la palabra más corta.
+             *      f) Número de palabras insertadas.
+             *      g) Buscar una palabra.
+             *      h) Borrar duplicados.
+             *      i) Salir.
+             */
+            
+            let palabras = [];
+            let i = 0;
+            let salir = false;
+            let palabrasLimpias = new Set();
+            let opcion;
+            let palabra = prompt("Introduzca palabra");
+            
+            while (palabra !== null){
+                palabras[i]= palabra;
+                i++;
+                palabra = prompt("Introduzca palabra");
+            }
+            
+            palabrasLimpias = palabras;
+            do{
+                console.log("a) Ver primera palabra insertada.");
+                console.log("b) Ver última palabra insertada.");
+                console.log("c) Ver todas las palabras.");
+                console.log("d) Ver la palabra más larga.");
+                console.log("e) Ver la palabra más corta.");
+                console.log("f) Número de palabras insertadas.");
+                console.log("g) Buscar una palabra.");
+                console.log("h) Borrar duplicados.");
+                opcion = prompt("Introduzca una opción");
+                console.log(opcion);
+                
+                if(opcion === "i"){
+                    salir = true;
+                }
+                if(opcion === null){
+                    console.log("Valor nulo. Repita...");
+                } else{
+                    switch(opcion){
+                        case "a": console.log(palabras[0]);
+                                  break;
+                        case "b": console.log(palabras[palabras.length-1]);
+                                  break;
+                        case "c": console.log(palabras);
+                                  break;
+                        case "d": console.log(palabras.sort((a,b) => a.length-b.length)[palabras.length-1]);
+                                  break;
+                        case "e": console.log(palabras.sort((a,b) => a.length-b.length)[0]);
+                                  break;
+                        case "f": console.log(palabras.length);
+                                  break;
+                        case "g": console.log(palabras.find(x => x === prompt("Introduzca palabra")));
+                                  break;
+                        case "h": console.log(palabrasLimpias);
+                                  break;
+                        case "i": console.log("Saliendo...");
+                                  break;
+                    }
+                }
+            }while (!salir);
+            
+        </script>
+    </body>
+</html>
