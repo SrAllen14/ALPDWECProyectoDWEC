@@ -30,16 +30,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             
             function invertirMapas(mapaOriginal){
                 let mapaInvertido = new Map();
-                let conjunto = new Set();
-                let key;
                 
-                for (elements of mapaOriginal){
-                    conjunto.add(elements.valueOf()[1]);
-                }
-                
-                for (let i = 0; i < conjunto.length; i++){
-                    for (elements of mapaOriginal){
-                        mapaInvertido.set(conjunto[i], elements.valueOf());
+                for (const[clave, valor] of mapaOriginal){
+                    if(mapaInvertido.has(valor)){
+                        mapaInvertido.get(valor).push(clave);
+                    } else{
+                        mapaInvertido.set(valor,[clave]);
                     }
                 }
                 
