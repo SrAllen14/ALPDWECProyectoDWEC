@@ -16,13 +16,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
              * como parámetros el número de elementos de la serie que queremos que muestre. Este dato
              * se lo solicitaremos al usuario. Debes crear dos funciones para resolver este problema, 
              * una recursiva y otra iterativa.
-             */  
+            */  
             let n;
             let vector = [];
             n = Number(prompt("Escriba la cantidad de números que quiere."));
             
             console.log("Serie de Fibonacci-Recursiva");
-            for(let a = 0; a < n; a++){
+            for(let a = 0; a <= n; a++){
                 vector.push(serieFibonacciRecursiva(a));
             }
             console.log(vector);
@@ -41,7 +41,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             
             function serieFibonacciIterativa(n){
                 let serie = [0, 1];
-                for (let i = 2; i < n; i++){
+                for (let i = 2; i <= n; i++){
                     serie.push(serie[i-1]+serie[i-2]);
                 }
                 return serie.slice(0, n);
