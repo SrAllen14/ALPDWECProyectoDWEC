@@ -16,8 +16,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
              * semana en que nació y el día de la semana de todos los cumpleaños hasta este año.
              */
             
-            // Pedimos la fecha de nacimiento al usuario
+            // Creamos el array diasSemana con los días de la semana.
+            // Es importante que el orden sea como primer día domingo y como último sabado
+            // ya que los métodos usados cuentan como primer día de la semana el domingo.
+            
             const diasSemana = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+            // Pedimos la fecha de nacimiento al usuario
             const fechaIntroducida = prompt("Introduce tu fecha de nacimiento (formato: YYYY-MM-DD):");
 
             // Convertimos la cadena en un objeto Date
@@ -31,7 +35,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
               const anioActual = new Date().getFullYear();
 
               // Día de la semana en que nació
-              const diaNacimiento = diasSemana[fechaNacimiento.getDay()];
+              const diaNacimiento = diasSemana[fechaNacimiento.getDay()];           // El método getday() nos devuelve el número del día de la semana teniendo en cuenta que empieza en domingo y acaba en sabado.
               console.log(`Naciste un ${diaNacimiento}.`);
 
               console.log("\nDía de la semana de tus cumpleaños cada año:");
