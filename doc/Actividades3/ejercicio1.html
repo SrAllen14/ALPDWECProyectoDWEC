@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Álvaro Allén Perlines</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            /*
+             * 1. Crea un script que pida al usuario su fecha de nacimiento y le diga el día de la 
+             * semana en que nació y el día de la semana de todos los cumpleaños hasta este año.
+             */
+            
+            // Creamos el array diasSemana con los días de la semana.
+            // Es importante que el orden sea como primer día domingo y como último sabado
+            // ya que los métodos usados cuentan como primer día de la semana el domingo.
+            
+            const diasSemana = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+            // Pedimos la fecha de nacimiento al usuario
+            const fechaIntroducida = prompt("Introduce tu fecha de nacimiento (formato: YYYY-MM-DD):");
+
+            // Convertimos la cadena en un objeto Date
+            const fechaNacimiento = new Date(fechaIntroducida);
+
+            // Validamos la fecha
+            if (isNaN(fechaNacimiento)) {
+              console.log("Fecha inválida. Usa el formato YYYY-MM-DD.");
+            } else {
+              const anioNacimiento = fechaNacimiento.getFullYear();
+              const anioActual = new Date().getFullYear();
+
+              // Día de la semana en que nació
+              const diaNacimiento = diasSemana[fechaNacimiento.getDay()];           // El método getday() nos devuelve el número del día de la semana teniendo en cuenta que empieza en domingo y acaba en sabado.
+              console.log(`Naciste un ${diaNacimiento}.`);
+
+              console.log("\nDía de la semana de tus cumpleaños cada año:");
+              console.log("============================================");
+
+              // Recorremos desde el año de nacimiento hasta el actual
+              for (let anio = anioNacimiento; anio <= anioActual; anio++) {
+                const cumple = new Date(anio, fechaNacimiento.getMonth(), fechaNacimiento.getDate());
+                const dia = diasSemana[cumple.getDay()];
+                console.log(`${anio}: ${dia}`);
+              }
+            }
+
+        </script>
+    </body>
+</html>
