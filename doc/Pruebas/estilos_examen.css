@@ -1,0 +1,77 @@
+.fila{
+    padding:0px;
+    border-spacing: 0px;
+    margin: 0px;
+    float: left;
+    clear: left;
+}
+.celda{
+    width: 5px;
+    height: 5px;
+    border: 1px;
+    border-color: grey;
+    border-style:ridge;
+    padding:0px;
+    border-spacing: 0px;
+    margin: 0px;
+    float: left;
+    position: relative;
+}
+
+#lienzo{
+    clear: both;
+}
+#server{
+    float: left;
+    margin-left: 50px;
+}
+#panel{
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 50px;
+
+}
+.tablerodibujo{
+    border: 2px;
+    border-color:brown;
+    border-style: solid;
+}
+.color1 {
+    background-color: #FF0;
+}
+.color2 {
+    background-color: #0F0;
+}
+.color3 {
+    background-color: #000;
+}
+.color4 {
+    background-color: #F00;
+}
+.color5 {
+    background-color: #06C;
+}
+.color6 {
+    background-color: #FFF;
+}
+#tam_lienzo{
+    width: 40px;
+}
+#paleta td{
+    width: 35px;
+    height: 20px;
+}
+
+#pincel{
+    text-align: center;
+}
+#dibujo_aleatorio{
+    text-align: center;
+}
+
+.seleccionado{
+    border: medium solid #939;
+}
+h1{
+    text-align: center;
+}
