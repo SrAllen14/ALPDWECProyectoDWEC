@@ -73,8 +73,7 @@ main{
 }
 
 .container{
-    width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
     padding: 20px;
     overflow-x: auto;
     overflow-y: visible;

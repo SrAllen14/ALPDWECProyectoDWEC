@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+
+}
+header{
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    color:cornflowerblue;
+    position:sticky;
+}
+#listaUsuarios{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 18px;
+
+}
+img{
+    padding-top: 5px;
+    border-radius: 10px;
+}
+.usuario{
+    height: 230px;
+    border:  solid cornflowerblue;
+    border-radius: 10px;
+    flex: 0 0  20rem;
+    text-align: center;
+    padding: .5rem;
+background-color: rgba(100, 148, 237, 0.473);
+
+}
