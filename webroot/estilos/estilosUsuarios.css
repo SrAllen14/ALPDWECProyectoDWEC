@@ -4,13 +4,7 @@
     padding: 0;
 
 }
-header{
-    height: 100px;
-    text-align: center;
-    line-height: 100px;
-    color:cornflowerblue;
-    position:sticky;
-}
+
 #listaUsuarios{
     width: 80%;
     display: flex;
