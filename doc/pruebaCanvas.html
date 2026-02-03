@@ -10,13 +10,64 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div></div>
+        <h2>Canvas RGB</h2>
+        <div class="control">
+            <label>Rojo</label>
+            <input type="range" id="r" min="0" max="255" value="128">
+            <span id="rv">128</span>
+        </div>
+
+        <div class="control">
+            <label>Verde</label>
+            <input type="range" id="g" min="0" max="255" value="128">
+            <span id="gv">128</span>
+        </div>
+
+        <div class="control">
+            <label>Azul</label>
+            <input type="range" id="b" min="0" max="255" value="128">
+            <span id="bv">128</span>
+        </div>
+        <canvas id="canvas" style="width: 500px; height: 500px; border: 1px solid black; background-image: url('https://picsum.photos/id/200/500/500'); background-repeat: no-repeat;"></canvas>
     </body>
-    <canvas id="canvas" style="width: 500px; height: 500px; border: 1px solid black; background-color: antiquewhite;"></canvas>
     <script>
-        const c = document.getElementById("canvas");
-        const ctx = c.getContext("2d");
-        ctx.fillStyle = "red";
-        ctx.fillRect(100, 100, 200, 50);
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const r = document.getElementById("r");
+        const g = document.getElementById("g");
+        const b = document.getElementById("b");
+
+        const rv = document.getElementById("rv");
+        const gv = document.getElementById("gv");
+        const bv = document.getElementById("bv");
+
+        function draw() {
+            rv.textContent = r.value;
+            gv.textContent = g.value;
+            bv.textContent = b.value;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Barras RGB
+            ctx.fillStyle = `rgb(${r.value},0,0)`;
+            ctx.fillRect(20, 20, r.value, 20);
+
+            ctx.fillStyle = `rgb(0,${g.value},0)`;
+            ctx.fillRect(20, 60, g.value, 20);
+
+            ctx.fillStyle = `rgb(0,0,${b.value})`;
+            ctx.fillRect(20, 100, b.value, 20);
+
+            // Color resultante
+            ctx.fillStyle = `rgb(${r.value},${g.value},${b.value})`;
+            ctx.fillRect(250, 40, 120, 80);
+        }
+
+        r.addEventListener("input", draw);
+        g.addEventListener("input", draw);
+        b.addEventListener("input", draw);
+
+        draw();
     </script>
 </html>
