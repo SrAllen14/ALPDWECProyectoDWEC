@@ -28,46 +28,64 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <input type="range" id="b" min="0" max="255" value="128">
             <span id="bv">128</span>
         </div>
-        <canvas id="canvas" style="width: 500px; height: 500px; border: 1px solid black; background-image: url('https://picsum.photos/id/200/500/500'); background-repeat: no-repeat;"></canvas>
+        <canvas id="canvas" style="width: 300px; height: 168px; border: 1px solid black; background-image: url('https://picsum.photos/id/200/300/168'); background-repeat: no-repeat; border: 3px solid black;"></canvas>
     </body>
     <script>
         const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d", {willReadFrequently: true});
 
+        ctx.fillStyle = "rgb(200, 0, 0, 0.8";
+        ctx.fillRect(100, 100, 200, 100);
+
+        ctx.strokeStyle = "green";
+        ctx.strokeRect(100, 150, 200, 200);
+        
         const r = document.getElementById("r");
         const g = document.getElementById("g");
         const b = document.getElementById("b");
+        
+        var copiaImagen = [];
+        
+        var foto = document.createElement("img");
+        foto.src="https://picsum.photos/id/200/500/500";
+        foto.addEventListener("load", ()=>{
+            ctx.drawImage(foto, 0, 0);
+            console.log(ctx.getImageData(0, 0, 300, 168));
+            
+            imgData = ctx.getImageData(0, 0, 300, 168);
+            let aFoto = imgData.data;
+            const aFoto2 = imgData.data;
+            
+            copiaImagen = Array.from(imgData.data);
+            
+            r.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+            
+            g.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+            
+            b.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+        });
 
-        const rv = document.getElementById("rv");
-        const gv = document.getElementById("gv");
-        const bv = document.getElementById("bv");
+        function modificarImagen(ctx, aFoto, aFoto2, r, g, b) {
+            console.log("valor de rojo: "+r.value);
+            console.log("Valor de verde: "+g.value);
+            console.log("Valor de azul: "+b.value);
+            console.log(copiaImagen);
+            
+            for(let i = 0; i < aFoto.length; i++){
+                aFoto[i] = (copiaImagen[i] + (255 * r.value/100))>255 ? 255 : (copiaImagen[i] + (255 * r.value/100));
+                aFoto[i + 1] = (copiaImagen[i + 1] + (255 * g.value/100))>255 ? 255 : (copiaImagen[i] + (255 * g.value/100));
+                aFoto[i + 2] = (copiaImagen[i + 2] + (255 * b.value/100))>255 ? 255 : (copiaImagen[i] + (255 * b.value/100));
+            }
 
-        function draw() {
-            rv.textContent = r.value;
-            gv.textContent = g.value;
-            bv.textContent = b.value;
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Barras RGB
-            ctx.fillStyle = `rgb(${r.value},0,0)`;
-            ctx.fillRect(20, 20, r.value, 20);
-
-            ctx.fillStyle = `rgb(0,${g.value},0)`;
-            ctx.fillRect(20, 60, g.value, 20);
-
-            ctx.fillStyle = `rgb(0,0,${b.value})`;
-            ctx.fillRect(20, 100, b.value, 20);
-
-            // Color resultante
-            ctx.fillStyle = `rgb(${r.value},${g.value},${b.value})`;
-            ctx.fillRect(250, 40, 120, 80);
+            ctx.putImageData(imgData, 0, 0);
         }
-
-        r.addEventListener("input", draw);
-        g.addEventListener("input", draw);
-        b.addEventListener("input", draw);
-
-        draw();
     </script>
 </html>
