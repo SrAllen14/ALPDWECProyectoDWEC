@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Canvas prueba</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #colores{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        #colores div{
+            display: block;
+            width: 150px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none; /* Chrome, Safari, Opera */
+            appearance: none;
+            background: transparent; /* Quita el fondo por defecto */
+            cursor: pointer;
+            width: 150px;
+        }
+        /* Para Chrome, Safari y Edge */
+        #r::-webkit-slider-runnable-track {
+            background: #ff4d4d; /* Color rojo */
+            height: 8px;
+            border-radius: 5px;
+        }
+
+        #g::-webkit-slider-runnable-track {
+            background: #4dff88; /* Color verde */
+            height: 8px;
+            border-radius: 5px;
+        }
+
+        #b::-webkit-slider-runnable-track {
+            background: #4d94ff; /* Color azul */
+            height: 8px;
+            border-radius: 5px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -4px; /* Centra el botón sobre la pista */
+            background-color: #333;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+        }
+        #barraHerramientas{
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            width: 1460px;
+            display: flex;
+            gap: 10px;
+        }
+        #barraHerramientas input{
+            display: none;
+        }
+        #barraHerramientas label{
+            display: block;
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+        }
+        #barraHerramientas input:checked + label{
+            border: 3px solid black;
+        }
+        #barraHerramientas #pintarNegro:checked + label{
+            border: 3px solid red;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="colores">
+            <img src="../webroot/images/img.jpg" alt="">
+        <canvas id="canvas" width=500 height=500 style="background-color: bisque; border: 2px solid black;"></canvas>
+        <div>
+            <input type="range" name="rojo" id="r" min="-100" max="100" value="0">
+            <input type="range" name="verde" id="g" min="-100" max="100" value="0">
+            <input type="range" name="azul" id="b" min="-100" max="100" value="0">
+        </div>
+
+    </div>
+    <div id="barraHerramientas">
+        <input type="radio" name="colores" id="pintarNegro" value="negro" checked>
+        <label for="pintarNegro" style="background-color: black;"></label>
+        <input type="radio" name="colores" id="pintarRojo" value="rojo">
+        <label for="pintarRojo" style="background-color: red;"></label>
+        <input type="radio" name="colores" id="pintarVerde" value="verde">
+        <label for="pintarVerde" style="background-color: green;"></label>
+    </div>
+    <div id="lienzo">
+        <canvas id="canvas2" width=1500 height=550 style="background-color: bisque; border: 2px solid black;"></canvas>
+    </div>
+    </body>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+        var colorNegro = document.getElementById('pintarNegro')
+        colorNegro.addEventListener('click',()=>{
+            console.log(colorNegro.value);
+            colorPincel = "rgb(0,0,0)";
+        })
+        var colorRojo = document.getElementById('pintarRojo')
+        colorRojo.addEventListener('click',()=>{
+            console.log(colorRojo.value);
+            colorPincel = "rgb(255,0,0)";
+        })
+        var colorVerde = document.getElementById('pintarVerde')
+        colorVerde.addEventListener('click',()=>{
+            console.log(colorVerde.value);
+            colorPincel = "rgb(0,128,0)";
+        })
+        colorPincel = "rgb(0,0,0)";
+
+        ctx.fillStyle = "rgb(200, 0, 0, 0.8";
+        ctx.fillRect(100, 100, 200, 100);
+
+        ctx.strokeStyle = "green";
+        ctx.strokeRect(150, 150, 200, 200);
+        
+        const r = document.getElementById("r");
+        const g = document.getElementById("g");
+        const b = document.getElementById("b");
+        
+        var copiaImagen = [];
+        
+        var foto = document.createElement("img");
+        foto.src = "../webroot/images/img.jpg";
+        foto.addEventListener("load", ()=>{
+            ctx.drawImage(foto, 0, 0);
+            console.log(ctx.getImageData(0, 0, 500, 500));
+            
+            imgData = ctx.getImageData(0, 0, 500, 500);
+            let aFoto = imgData.data;
+            const aFoto2 = imgData.data;
+            
+            copiaImagen = Array.from(imgData.data);
+            
+            r.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+            
+            g.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+            
+            b.addEventListener("input", ()=>{
+                modificarImagen(ctx, aFoto, aFoto2, r.value, g.value, b.value);
+            });
+        });
+
+        function modificarImagen(ctx, aFoto, aFoto2, r, g, b) {
+            console.log("valor de rojo: " + r);
+            console.log("Valor de verde: " + g);
+            console.log("Valor de azul: " + b);
+            console.log(copiaImagen);
+            
+            for(let i = 0; i < aFoto.length; i+=4){
+                aFoto[i] = (copiaImagen[i] + (255 * r/100))>255 ? 255 : (copiaImagen[i] + (255 * r/100));
+                aFoto[i + 1] = (copiaImagen[i + 1] + (255 * g/100))>255 ? 255 : (copiaImagen[i + 1] + (255 * g/100));
+                aFoto[i + 2] = (copiaImagen[i + 2] + (255 * b/100))>255 ? 255 : (copiaImagen[i + 2] + (255 * b/100));
+            }
+            ctx.putImageData(imgData, 0, 0);
+        }
+        
+        const canva2 = document.getElementById("canvas2");
+        const lienzo = canva2.getContext("2d", { willReadFrequently: true });
+
+        lienzo.fillStyle = colorPincel;
+        
+        canva2.addEventListener("mousedown",(e)=>{
+            xAnterior = e.offsetX;
+            yAnterior = e.offsetY;
+            canva2.addEventListener("mousemove",movimiento)
+        })
+
+        window.addEventListener("mouseup",()=>{
+            canva2.removeEventListener("mousemove",movimiento)
+        })
+        
+        // Función para manejar el movimiento
+        function movimiento(e) {
+            // offsetX/Y nos da la posición exacta dentro del cuadro del canvas
+            console.log("X: " + e.offsetX + ", Y: " + e.offsetY);
+
+            // esto es para dibujar cuadrados
+            // lienzo.fillRect(e.offsetX, e.offsetY, 10, 10);
+            
+            lienzo.lineWidth = 5;
+            lienzo.lineJoin = "round"; // Para que las esquinas sean suaves
+            lienzo.lineCap = "round";  // Para que el trazo no sea cuadrado
+            lienzo.strokeStyle = colorPincel;
+
+            lienzo.beginPath();
+            // Movemos al punto donde estaba el mouse hace un milisegundo
+            lienzo.moveTo(xAnterior, yAnterior); 
+            // Trazamos hasta la posición actual
+            lienzo.lineTo(e.offsetX, e.offsetY); 
+            lienzo.stroke();
+
+            // Actualizamos el punto anterior para el siguiente movimiento
+            xAnterior = e.offsetX;
+            yAnterior = e.offsetY;
+
+        }
+    </script>
+</html>
